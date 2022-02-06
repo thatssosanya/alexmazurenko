@@ -25,18 +25,18 @@ const Personal = ({ selected }) => {
     <Section selected={ selected }>
       <StyledContainer>
         <p>
-          I'm a young and ambitious developer currently based in Saint Petersburg, Russia.
+          I&apos;m a young and ambitious developer currently based in Saint Petersburg, Russia.
         </p>
         <p>
-          I love creating things that make peoples' lives better, be it because they're useful or just plain fun.
-          For that, I'm always eager to learn new technologies and hone my craft.
+          I love creating things that make peoples&apos; lives better, be it because they&apos;re useful or just plain fun.
+          For that, I&apos;m always eager to learn new technologies and hone my craft.
         </p>
         <p>
-          I'm also good with people and consistently well liked in all teams I've worked with.
+          I&apos;m also good with people and consistently well liked in all teams I&apos;ve worked with.
         </p>
         <br />
         <p>
-          I hope you've enjoyed this so far, and if you have, head on over to the last page to learn more or get in touch with me. :)
+          I hope you&apos;ve enjoyed this so far, and if you have, head on over to the last page to learn more or get in touch with me. :)
         </p>
       </StyledContainer>
     </Section>

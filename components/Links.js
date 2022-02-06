@@ -43,7 +43,10 @@ const Links = ({ selected }) => {
     <Section selected={ selected }>
       {
         links.map(link => (
-          <StyledLink href={ link.href }>
+          <StyledLink
+            href={ link.href }
+            key={ link.href }
+          >
             <FontAwesomeIcon 
               icon={ link.icon }
             />

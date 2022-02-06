@@ -52,7 +52,7 @@ const Hero = ({ selected }) => {
     lines.reduce((acc, value) => [
       ...acc,
       value,
-      <Delete characters={ value.length } />
+      <Delete characters={ value.length } key={ value } />
     ], [])
   ), [lines])
 

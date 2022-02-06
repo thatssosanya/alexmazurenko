@@ -23,6 +23,8 @@ const Tag = React.forwardRef(({ text, inline, rounded }, ref) => {
   )
 })
 
+Tag.displayName = "Tag"
+
 Tag.propTypes = {
   text: PropTypes.string
 }

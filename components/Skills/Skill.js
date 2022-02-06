@@ -23,11 +23,11 @@ const StyledChildren = styled.div`
   flex-direction: column;
 `
 
-const Skill = React.forwardRef(({ name, children }, forwardedRef) => {
-  const childrenEntries = useMemo(() => Object.entries(children), [children])
+const Skill = React.forwardRef(({ name, childSkills }, forwardedRef) => {
+  const childEntries = useMemo(() => Object.entries(childSkills), [childSkills])
 
   const ref = useRef(null)
-  const refs = useRef(Array(childrenEntries.length).fill().map(() => React.createRef(null)))
+  const refs = useRef(Array(childEntries.length).fill().map(() => React.createRef(null)))
 
   const result = (
     <StyledSkill>
@@ -39,7 +39,7 @@ const Skill = React.forwardRef(({ name, children }, forwardedRef) => {
       </StyledTagContainer>
       <StyledChildren>
       {
-        childrenEntries.map(([name, children], i) => (
+        childEntries.map(([name, children], i) => (
           <React.Fragment key={ name }>
             <Skill
               name={ name }
@@ -65,6 +65,8 @@ const Skill = React.forwardRef(({ name, children }, forwardedRef) => {
 
   return result
 })
+
+Skill.displayName = "Skill"
 
 Skill.propTypes = {
   name: PropTypes.string,

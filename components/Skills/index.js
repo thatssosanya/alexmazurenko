@@ -59,10 +59,10 @@ const Skills = ({ selected }) => {
     <Section selected={ selected }>
       <StyledContainer>
         {
-          Object.entries(skills).map(([name, children]) => (
+          Object.entries(skills).map(([name, childSkills]) => (
             <Skill
               name={ name }
-              children={ children }
+              childSkills={ childSkills }
               key={ name }
             />
           ))
