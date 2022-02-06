@@ -39,11 +39,11 @@ const Skill = React.forwardRef(({ name, childSkills }, forwardedRef) => {
       </StyledTagContainer>
       <StyledChildren>
       {
-        childEntries.map(([name, children], i) => (
+        childEntries.map(([name, childSkills], i) => (
           <React.Fragment key={ name }>
             <Skill
               name={ name }
-              children={ children }
+              childSkills={ childSkills }
               ref={ refs.current[i] }
             />
             <Xarrow
