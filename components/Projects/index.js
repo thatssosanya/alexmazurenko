@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 
 const StyledIcon = styled(FontAwesomeIcon)`
+  cursor: pointer;
   transition: opacity 0.3s;
   ${ ({ disabled }) => disabled && "opacity: 0;" }
 `
