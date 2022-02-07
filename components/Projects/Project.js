@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import React, { useMemo, useRef, useEffect } from "react"
 import Tag from "../Tag"
 import PropTypes from "prop-types"
 import styled from "styled-components"
@@ -75,7 +75,10 @@ const Project = ({ project, selected }) => {
     other
   } = project
 
-  const httpsGithub = github?.length && github.map(link => `https://github.com${link}`)
+  const httpsGithub = useMemo(() => github?.length && github.map(path => ({
+    href: `https://github.com${path}`,
+    path: path
+  })), [github])
 
   const ref = useRef(null)
   useEffect(() => {
@@ -100,13 +103,13 @@ const Project = ({ project, selected }) => {
           <div className="Github">
             {
               httpsGithub.map(link => (
-                <React.Fragment key={ link }>
+                <React.Fragment key={ link.path }>
                   <a
-                    href={ link }
+                    href={ link.href }
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <FontAwesomeIcon icon={ faGithub } />{ link }
+                    <FontAwesomeIcon icon={ faGithub } />{ link.path }
                   </a>
                 </React.Fragment>
               ))
