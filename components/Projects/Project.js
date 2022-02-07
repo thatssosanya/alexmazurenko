@@ -54,12 +54,12 @@ const StyledHeader = styled.div`
 
 const StyledSection = styled.div`
   ${ ({ regularLineHeight }) => !regularLineHeight && "line-height: 1.7em;" }
-  ${ ({ wideMargin }) => wideMargin && "margin-top: 1em;" }
+  ${ ({ wideMargin }) => wideMargin && "margin: 1em 0;"}
   font-size: 0.8em;
   margin-top: 0.1em;
 
   :last-child {
-    margin-top: auto;
+    margin: auto 0 0;
   }
 `
 
@@ -125,7 +125,7 @@ const Project = ({ project, selected }) => {
       </StyledSection>
       {
         (frontend?.length || backend?.length || other?.length) &&
-        <StyledSection wideMargin>
+        <StyledSection>
         {
           frontend?.length &&
           <StyledSection>

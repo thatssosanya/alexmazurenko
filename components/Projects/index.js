@@ -74,7 +74,7 @@ const Projects = ({ selected }) => {
     title: "herzen-ics",
     github: ["/arseniiarsenii/herzen-schedule-to-ics"],
     when: "April 2021",
-    description: "A friend's web app that parses their university's schedule web page and converts " +
+    description: "My friend's app that parses their university's schedule page and converts " +
       "it to an .ics file. I did the frontend and also helped with the backend.",
     frontend: ["ES6", "Bootstrap"],
     backend: ["Python", "Bottle", "BeautifulSoup4"]
