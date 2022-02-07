@@ -75,7 +75,7 @@ const Project = ({ project, selected }) => {
     other
   } = project
 
-  const httpsGithub = github && `https://github.com${github}`
+  const httpsGithub = github?.length && github.map(link => `https://github.com${link}`)
 
   const ref = useRef(null)
   useEffect(() => {
@@ -93,16 +93,16 @@ const Project = ({ project, selected }) => {
           <img src={ imgSrc } alt={ imgSrc } />
         }
         <div className="Title">
-          { title }
+          <input type="radio" />{ title }
         </div>
         {
-          github?.length ?
+          httpsGithub?.length ?
           <div className="Github">
             {
-              github.map(link => (
+              httpsGithub.map(link => (
                 <React.Fragment key={ link }>
                   <a
-                    href={ httpsGithub }
+                    href={ link }
                     target="_blank"
                     rel="noreferrer"
                   >
