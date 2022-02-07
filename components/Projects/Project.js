@@ -93,7 +93,7 @@ const Project = ({ project, selected }) => {
           <img src={ imgSrc } alt={ imgSrc } />
         }
         <div className="Title">
-          <input type="radio" />{ title }
+          { title }
         </div>
         {
           httpsGithub?.length ?
