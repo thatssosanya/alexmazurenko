@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import Tag from "../Tag"
 import PropTypes from "prop-types"
 import styled from "styled-components"
@@ -6,11 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const StyledProject = styled.div`
-  ${ ({ selected }) => !selected && "display: none;" }
+  // ${ ({ selected }) => !selected && "display: none;" }
   width: 18em;
   padding: 1em;
   color: #fff;
   background-color: #000;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 `
 
 const StyledHeader = styled.div`
@@ -50,8 +54,13 @@ const StyledHeader = styled.div`
 
 const StyledSection = styled.div`
   ${ ({ regularLineHeight }) => !regularLineHeight && "line-height: 1.7em;" }
+  ${ ({ wideMargin }) => wideMargin && "margin-top: 1em;" }
   font-size: 0.8em;
   margin-top: 0.1em;
+
+  :last-child {
+    margin-top: auto;
+  }
 `
 
 const Project = ({ project, selected }) => {
@@ -68,13 +77,21 @@ const Project = ({ project, selected }) => {
 
   const httpsGithub = github && `https://github.com${github}`
 
+  const ref = useRef(null)
+  useEffect(() => {
+    if (selected) {
+      ref.current?.scrollIntoView({ block: "nearest", behavior: "smooth" })
+    }
+  }, [selected])
+
   return (
-    <StyledProject selected={ selected }>
+    // <StyledProject selected={ selected }>
+    <StyledProject ref={ ref }>
       <StyledHeader withImg={ imgSrc }>
-        {/* {
+        {
           imgSrc &&
           <img src={ imgSrc } alt={ imgSrc } />
-        } */}
+        }
         <div className="Title">
           { title }
         </div>
@@ -83,7 +100,7 @@ const Project = ({ project, selected }) => {
           <div className="Github">
             {
               github.map(link => (
-                <>
+                <React.Fragment key={ link }>
                   <a
                     href={ httpsGithub }
                     target="_blank"
@@ -91,7 +108,7 @@ const Project = ({ project, selected }) => {
                   >
                     <FontAwesomeIcon icon={ faGithub } />{ link }
                   </a>
-                </>
+                </React.Fragment>
               ))
             }
           </div> :
@@ -103,37 +120,42 @@ const Project = ({ project, selected }) => {
           { when }
         </div>
       </StyledHeader>
-      <StyledSection regularLineHeight>
+      <StyledSection regularLineHeight wideMargin>
         { description }
       </StyledSection>
       {
-        frontend?.length &&
-        <StyledSection>
-          Frontend: {
-            frontend && frontend.map((skill, i) => (
-              <Tag text={ skill } inline key={ i } />
-            ))
-          }
-        </StyledSection>
-      }
-      {
-        backend?.length &&
-        <StyledSection>
-          Backend: {
-            backend && backend.map((skill, i) => (
-              <Tag text={ skill } inline key={ i } />
-            ))
-          }
-        </StyledSection>
-      }
-      {
-        other?.length &&
-        <StyledSection>
-          Also: {
-            other && other.map((skill, i) => (
-              <Tag text={ skill } inline key={ i } />
-            ))
-          }
+        (frontend?.length || backend?.length || other?.length) &&
+        <StyledSection wideMargin>
+        {
+          frontend?.length &&
+          <StyledSection>
+            Frontend: {
+              frontend && frontend.map((skill, i) => (
+                <Tag text={ skill } inline key={ i } />
+              ))
+            }
+          </StyledSection>
+        }
+        {
+          backend?.length &&
+          <StyledSection>
+            Backend: {
+              backend && backend.map((skill, i) => (
+                <Tag text={ skill } inline key={ i } />
+              ))
+            }
+          </StyledSection>
+        }
+        {
+          other?.length &&
+          <StyledSection>
+            Also: {
+              other && other.map((skill, i) => (
+                <Tag text={ skill } inline key={ i } />
+              ))
+            }
+          </StyledSection>
+        }
         </StyledSection>
       }
     </StyledProject>
@@ -144,7 +166,7 @@ Project.propTypes = {
   project: PropTypes.shape({
     imgSrc: PropTypes.string,
     title: PropTypes.string,
-    github: PropTypes.string,
+    github: PropTypes.arrayOf(PropTypes.string),
     when: PropTypes.string,
     description: PropTypes.string,
     frontend: PropTypes.arrayOf(PropTypes.string),

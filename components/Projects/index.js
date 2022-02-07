@@ -7,12 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 
 const StyledIcon = styled(FontAwesomeIcon)`
-  ${ ({ disabled }) => disabled && "visibility: hidden" }
+  transition: opacity 0.3s;
+  ${ ({ disabled }) => disabled && "opacity: 0;" }
 `
 
 const StyledCarousel = styled.div`
   font-size: 0.55em;
   margin: 0 0.5em;
+  width: 18em;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
 `
 
 const Projects = ({ selected }) => {
@@ -22,8 +27,8 @@ const Projects = ({ selected }) => {
   {
     title: "thomas-says",
     github: [
-      "ooohrayyy/thomas-says",
-      "stonekite/thomas-says-api"
+      "/ooohrayyy/thomas-says",
+      "/stonekite/thomas-says-api"
     ],
     when: "February 2022",
     description: "A fun Tampermonkey extension that replaces ClickUp quotes with your own quotes.",
@@ -31,7 +36,7 @@ const Projects = ({ selected }) => {
     backend: ["Node.js", "Next", "knex", "PostgreSQL"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "This website",
     github: ["/stonekite/alexmazurenko"],
     when: "January 2022",
@@ -39,7 +44,7 @@ const Projects = ({ selected }) => {
     frontend: ["React", "Next", "styled-components"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "eshkoleso_bot",
     github: ["/stonekite/eshkoleso_bot"],
     when: "January 2022",
@@ -47,7 +52,7 @@ const Projects = ({ selected }) => {
     backend: ["Python", "MongoDB", "python-telegram-bot", "Google Time Zone API"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "innoscripta",
     when: "Commercial, November 2021 - Current",
     description: "Frontend work ranging from fixing bugs and refactoring existing apps " +
@@ -55,7 +60,7 @@ const Projects = ({ selected }) => {
     frontend: ["React", "Redux", "Sass"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "Odoo",
     when: "Commercial, March 2021 - November 2021",
     description: "Building custom Odoo modules on both sides of the stack for Odoo clients. " + 
@@ -65,7 +70,7 @@ const Projects = ({ selected }) => {
     backend: ["Odoo.py (Django-like)", "PostgreSQL"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "herzen-ics",
     github: ["/arseniiarsenii/herzen-schedule-to-ics"],
     when: "April 2021",
@@ -75,7 +80,7 @@ const Projects = ({ selected }) => {
     backend: ["Python", "Bottle", "BeautifulSoup4"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "NSYS Tools",
     when: "Commercial, September 2020 - March 2021",
     description: "Developing new apps, refactoring old monolithic apps to microservices, performing " +
@@ -84,7 +89,7 @@ const Projects = ({ selected }) => {
     backend: ["C#", ".NET MVC", ".NET Core", "EF", "MS SQL"]
   },
   {
-    imgSrc: "/images/projects/face.png",
+    // imgSrc: "/images/projects/face.png",
     title: "M-Contract",
     when: "Commercial, January 2020 - September 2021",
     description: "Building a B2B marketplace from the ground up as the sole developer. Rapid " +
@@ -108,7 +113,7 @@ const Projects = ({ selected }) => {
           projects.map((project, i) => (
             <Project
               project={ project }
-              selected={ i === selectedProjectIndex }
+              selected={ selected && i === selectedProjectIndex }
               key={ i }
             />
           ))
