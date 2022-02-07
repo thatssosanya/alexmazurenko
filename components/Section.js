@@ -11,6 +11,12 @@ const StyledContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  > * {
+    transition: opacity 0.7s;
+    opacity: 0;
+    ${ ({ selected }) => selected && "opacity: 1;" }
+  }
 `
 
 const StyledSection = styled.div`
@@ -46,7 +52,7 @@ const Section = ({ selected, children }) => {
 
   return (
     <StyledSection ref={ ref }>
-      <StyledContent>
+      <StyledContent selected={ selected }>
         { children }
       </StyledContent>
     </StyledSection>
