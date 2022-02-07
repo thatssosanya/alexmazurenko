@@ -21,7 +21,6 @@ const StyledHeader = styled.div`
   ${ ({ withImg }) => withImg && "display: grid;" }
   column-gap: 0.8em;
   grid-template-columns: 1fr;
-  margin-bottom: 0.5em;
 
   img {
     height: 4em;
@@ -54,10 +53,10 @@ const StyledHeader = styled.div`
 
 const StyledSection = styled.div`
   ${ ({ regularLineHeight }) => !regularLineHeight && "line-height: 1.7em;" }
-  ${ ({ wideMargin }) => wideMargin && "margin: 1em 0;"}
   font-size: 0.8em;
-  margin-top: 0.1em;
 
+  margin-top: 0.1em;
+  ${ ({ wideMargin }) => wideMargin && "margin: 1em 0;"}
   :last-child {
     margin: auto 0 0;
   }
