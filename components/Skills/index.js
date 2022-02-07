@@ -16,25 +16,25 @@ const Skills = ({ selected }) => {
         "Gatsby": {},
         "styled-components": {}
       },
-      "TypeScript": {},
-      "ES6+": {},
-      "Vue": {},
       "Redux": {
         "redux-saga": {}
       },
+      "TypeScript": {},
+      "ES6+": {},
+      "Vue": {},
       "Sass": {}
     },
     "Backend": {
+      "Node.js": {
+        "Next": {},
+        "knex": {}
+      },
       "Python": {
         "Django": {},
         "Bottle": {},
         "Selenium": {},
         "Beautiful Soup": {},
         "PIL": {}
-      },
-      "Node.js": {
-        "Next": {},
-        "knex": {}
       },
       "C#": {
         ".NET 5": {},
