@@ -10,7 +10,7 @@ import HeightHandler from "../components/HeightHandler"
 import KeyboardHandler from "../components/KeyboardHandler"
 import { faHouseUser, faTasks, faFistRaised, faUser, faAt } from "@fortawesome/free-solid-svg-icons"
 
-export default function Index() {
+const Index = () => {
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0)
 
   const sections = useMemo(() => [
@@ -65,3 +65,9 @@ export default function Index() {
     </>
   )
 }
+
+export const getServerSideProps = async () => {
+  return { props: { } }
+}
+
+export default Index
