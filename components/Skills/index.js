@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import Skill from "./Skill"
 
 const StyledContainer = styled.div`
-  font-size: 0.4em;
+  font-size: 0.35em;
 `
 
 const Skills = ({ selected }) => {
