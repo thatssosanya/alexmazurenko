@@ -36,10 +36,10 @@ const StyledContent = styled.div`
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
+  cursor: pointer;
   flex-shrink: 1;
   transition: opacity 0.7s;
-  opacity: ${ ({ disabled }) => disabled ? "0" : "1" };
-  cursor: ${ ({ disabled }) => disabled ? "default" : "pointer" };
+  ${ ({ disabled }) => disabled && "opacity: 0; cursor: default;" };
 `
 
 const StyledItems = styled.div`

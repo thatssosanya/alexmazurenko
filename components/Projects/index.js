@@ -9,7 +9,7 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 const StyledIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
   transition: opacity 0.3s;
-  ${ ({ disabled }) => disabled && "opacity: 0;" }
+  ${ ({ disabled }) => disabled && "opacity: 0; cursor: default;" }
 `
 
 const StyledCarousel = styled.div`
