@@ -17,6 +17,7 @@ function Head() {
       <meta property="twitter:title" content={ title } />
       <meta property="twitter:description" content={ title } />
       <meta property="twitter:creator" content={ author } />
+      <meta name="google-site-verification" content="MylwfcPhMS_xj-mKDNp4ihXioejVQgjsbMjeE6Dfw7g" />
     </NextHead>
   )
 }
