@@ -14,7 +14,8 @@ const Skills = ({ selected }) => {
       "React": {
         "Next": {},
         "Gatsby": {},
-        "styled-components": {}
+        "styled-components": {},
+        "emotion": {}
       },
       "Redux": {
         "redux-saga": {}
@@ -22,7 +23,8 @@ const Skills = ({ selected }) => {
       "TypeScript": {},
       "ES6+": {},
       "Vue": {},
-      "Sass": {}
+      "Sass": {},
+      "Tailwind": {}
     },
     "Backend": {
       "Node.js": {
@@ -35,11 +37,6 @@ const Skills = ({ selected }) => {
         "Selenium": {},
         "Beautiful Soup": {},
         "PIL": {}
-      },
-      "C#": {
-        ".NET 5": {},
-        ".NET Core": {},
-        ".NET MVC": {}
       },
       "DB": {
         "PostgreSQL": {},

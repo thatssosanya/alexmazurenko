@@ -26,13 +26,37 @@ const Projects = ({ selected }) => {
 
   const projects = useMemo(() => [
     {
+      // imgSrc: "/images/projects/face.png",
+      title: "Supasession",
+      collaborators: ["seenyat"],
+      github: ["/stonekite/supasession"],
+      when: "November 2022 (in development)",
+      description: "Extension for Spicetify (Spotify desktop client modding platform) plus companion app " +
+        "for the ultimate IRL Social Session experience.",
+      frontend: ["React", "Tailwind"],
+      backend: ["Node.js", "socket.io"]
+    },
+    {
+      // imgSrc: "/images/projects/face.png",
+      title: "Bright Data",
+      when: "Commercial, April 2022 - Current",
+      description: "Frontend and backend work focusing around the control panel (stats and such) " +
+        "and third-party service integrations.",
+      frontend: ["React", "Sass"],
+      backend: ["Node.js", "Express", "MongoDB"]
+    },
+    {
+      // imgSrc: "/images/projects/face.png",
       title: "thomas-says",
+      collaborators: ["ooohrayyy"],
       github: [
         "/ooohrayyy/thomas-says",
-        "/stonekite/thomas-says-api"
+        "/stonekite/thomas-says-api",
+        "/stonekite/thomas-says-bot"
       ],
       when: "February 2022",
-      description: "A fun Tampermonkey extension that replaces ClickUp quotes with your own quotes.",
+      description: "A fun Tampermonkey extension that replaces ClickUp quotes with your own quotes - " +
+        "we did our Project Manager's quotes. Plus, a Telegram bot to respond to messages with relevant quotes.",
       frontend: ["ES6"],
       backend: ["Node.js", "Next", "knex", "PostgreSQL"]
     },
@@ -55,7 +79,7 @@ const Projects = ({ selected }) => {
     {
       // imgSrc: "/images/projects/face.png",
       title: "innoscripta",
-      when: "Commercial, November 2021 - Current",
+      when: "Commercial, November 2021 - April 2022",
       description: "Frontend work ranging from fixing bugs and refactoring existing apps " +
         "to implementing all-new functionality in a very dynamic startup environment.",
       frontend: ["React", "Redux", "Sass"]

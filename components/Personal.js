@@ -25,7 +25,7 @@ const Personal = ({ selected }) => {
     <Section selected={ selected }>
       <StyledContainer>
         <p>
-          I&apos;m a young and ambitious developer currently based in Saint Petersburg, Russia.
+          I&apos;m a young and ambitious developer currently based in Istanbul, Turkey.
         </p>
         <p>
           I love creating things that make peoples&apos; lives better, be it because they&apos;re useful or just plain fun.

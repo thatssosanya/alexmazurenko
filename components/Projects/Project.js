@@ -43,6 +43,12 @@ const StyledHeader = styled.div`
       color: #fff;
       text-decoration: none;
     }
+
+    &-nobreak {
+      a {
+        display: inline-block;
+      }
+    }
   }
 
   .When {
@@ -67,6 +73,7 @@ const Project = ({ project, selected }) => {
     imgSrc,
     title,
     github,
+    collaborators,
     when,
     description,
     frontend,
@@ -74,10 +81,17 @@ const Project = ({ project, selected }) => {
     other
   } = project
 
-  const httpsGithub = useMemo(() => github?.length && github.map(path => ({
-    href: `https://github.com${path}`,
-    path: path
+  const httpsGithub = useMemo(() => github?.length && 
+    github.map(path => ({
+      href: `https://github.com${path}`,
+      path
   })), [github])
+
+  const httpsCollaborators = useMemo(() => collaborators?.length && 
+    collaborators.map(username => ({
+      href: `https://github.com/${username}`,
+      username
+  })), [collaborators])
 
   const ref = useRef(null)
   useEffect(() => {
@@ -98,19 +112,31 @@ const Project = ({ project, selected }) => {
           { title }
         </div>
         {
+          httpsCollaborators?.length &&
+          <div className="Github Github-nobreak">
+            Developed with { 
+              httpsCollaborators.map(collaborator => (
+                <a
+                  href={ collaborator.href } target="_blank" rel="noreferrer"
+                  key={ collaborator.username }
+                >
+                  <FontAwesomeIcon icon={ faGithub } /> { collaborator.username }
+                </a>
+              ))
+            }
+          </div>
+        }
+        {
           httpsGithub?.length ?
           <div className="Github">
             {
               httpsGithub.map(link => (
-                <React.Fragment key={ link.path }>
-                  <a
-                    href={ link.href }
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <FontAwesomeIcon icon={ faGithub } />{ link.path }
-                  </a>
-                </React.Fragment>
+                <a
+                  href={ link.href } target="_blank" rel="noreferrer"
+                  key={ link.path }
+                >
+                  <FontAwesomeIcon icon={ faGithub } /> { link.path }
+                </a>
               ))
             }
           </div> :
