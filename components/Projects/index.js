@@ -27,6 +27,14 @@ const Projects = ({ selected }) => {
   const projects = useMemo(() => [
     {
       // imgSrc: "/images/projects/face.png",
+      title: "aoc-22",
+      github: ["/stonekite/aoc-22"],
+      when: "December 2022 (in development)",
+      description: "Advent of Code circa 2022 solved with ClojureScript.",
+      backend: ["ClojureScript"]
+    },
+    {
+      // imgSrc: "/images/projects/face.png",
       title: "Supasession",
       collaborators: ["seenyat"],
       github: ["/stonekite/supasession"],
