@@ -1,73 +1,72 @@
-import React, { useMemo, useState } from "react"
-import Head from "../components/Head"
-import Navigation from "../components/Navigation"
-import Hero from "../components/Hero"
-import Projects from "../components/Projects"
-import Skills from "../components/Skills"
-import Personal from "../components/Personal"
-import Links from "../components/Links"
-import HeightHandler from "../components/HeightHandler"
-import KeyboardHandler from "../components/KeyboardHandler"
-import { faHouseUser, faTasks, faFistRaised, faUser, faAt } from "@fortawesome/free-solid-svg-icons"
+import React from "react"
+import Head from "../lib/fe/components/Head"
+import Hero from "../lib/fe/components/Hero"
+import Projects from "../lib/fe/components/Projects"
+import Skills from "../lib/fe/components/Skills"
+import Personal from "../lib/fe/components/Personal"
+import Links from "../lib/fe/components/Links"
+import useVhWatcher from "../lib/fe/hooks/useVhWatcher"
+import useNavigation from "../lib/fe/hooks/useNavigation"
+import { getSectionData, getHeroLines, getProjects, getSkills, getAboutMe, getLinks } from "../lib/be/fetchers"
 
-const Index = () => {
-  const [selectedSectionIndex, setSelectedSectionIndex] = useState(0)
-
-  const sections = useMemo(() => [
-    Hero,
-    Projects,
-    Skills,
-    Personal,
-    Links
-  ], [])
-
-  const handleSetSelectedSectionIndex = (value) => 
-    setSelectedSectionIndex(Math.min(Math.max(value, 0), sections.length - 1))
-
-  const sectionIconsAndTitles = useMemo(() => [{
-    icon: faHouseUser,
-    title: ""
-  }, {
-    icon: faTasks,
-    title: "Projects"
-  }, {
-    icon: faFistRaised,
-    title: "Skills"
-  }, {
-    icon: faUser,
-    title: "About me"
-  }, {
-    icon: faAt,
-    title: "Links"
-  }], [])
+const Index = ({ sections }) => {
+  useVhWatcher()
+  const [Navigation, selectedSectionIndex] = useNavigation(sections)
 
   return (
     <>
       <Head />
-      <Navigation
-        sections={ sectionIconsAndTitles }
-        selectedSectionIndex={ selectedSectionIndex }
-        setSelectedSectionIndex={ handleSetSelectedSectionIndex }
-      />
+      { Navigation }
       {
-        sections.map((Section, i) => (
-          <Section
-            selected={ i === selectedSectionIndex }
-            key={ i }
-          />
-        ))
+        sections.map((section, i) => {
+          const Comp = titlesToComps[section.title]
+          return (
+            <Comp
+              selected={ i === selectedSectionIndex }
+              key={ i }
+              { ...section.props }
+            />)})
       }
-      <HeightHandler />
-      <KeyboardHandler
-        selectedSectionIndex={ selectedSectionIndex }
-        setSelectedSectionIndex={ handleSetSelectedSectionIndex }
-      />
     </>
   )
 }
 
-// export const getServerSideProps = async () => {
-//   return { props: { } }
-// }
+const titlesToComps = {
+  "": Hero,
+  "Projects": Projects,
+  "Skills": Skills,
+  "About me": Personal,
+  "Links": Links
+}
+
+export const getStaticProps = async () => {
+  const titlesToProps = {
+    "": { lines: getHeroLines },
+    "Projects": { projects: getProjects },
+    "Skills": { skills: getSkills },
+    "About me": { html: getAboutMe },
+    "Links": { links: getLinks }
+  }
+
+  const sectionData = await getSectionData();
+  const fullSectionData = await Promise.all(
+    sectionData
+      .map(async (s) => {
+        const props = titlesToProps[s.title]
+        return {
+          ...s,
+          props: await
+            Object.keys(props)
+              .reduce(async (a, p) => ({
+                ...a,
+                [p]: await (props[p]())
+              }), {})
+        }}))
+
+  return {
+    props: {
+      sections: fullSectionData
+  }}
+}
 
 export default Index
