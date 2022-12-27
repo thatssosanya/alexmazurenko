@@ -1,10 +1,21 @@
 import React from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
 import '../styles/styles.css'
 
-library.add(fab, fas)
+// import fontawesome icons
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faGithub, faLinkedin, faWhatsapp, faTelegram
+} from '@fortawesome/free-brands-svg-icons'
+import {
+  faAngleUp, faAngleDown, faAngleLeft, faAngleRight, faHouseUser, faTasks,
+  faFistRaised, faUser, faAt, faEnvelope 
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faGithub, faLinkedin, faWhatsapp, faTelegram, faAngleUp, faAngleDown,
+  faAngleLeft, faAngleRight, faHouseUser, faTasks, faFistRaised, faUser, faAt,
+  faEnvelope
+)
 
 // suppress warnings concerning useLayoutEffect during static generation
 if (typeof window === "undefined") React.useLayoutEffect = () => {}
