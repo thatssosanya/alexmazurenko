@@ -25,7 +25,9 @@ const Index = ({ sections }) => {
               selected={ i === selectedSectionIndex }
               key={ i }
               { ...section.props }
-            />)})
+            />
+          )
+        })
       }
     </>
   )
