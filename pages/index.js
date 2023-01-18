@@ -54,19 +54,18 @@ export const getStaticProps = async () => {
     "Links": { links: getLinks }
   }
 
-  const sectionData = await getSectionData();
+  const sectionData = await getSectionData()
   const fullSectionData = await Promise.all(
     sectionData
       .map(async (s) => {
         const props = titlesToProps[s.title]
         return {
           ...s,
-          props: await
-            Object.keys(props)
-              .reduce(async (a, p) => ({
-                ...a,
-                [p]: await (props[p]())
-              }), {})
+          props: await Object.keys(props).reduce(
+            async (a, p) => ({
+              ...a,
+              [p]: await (props[p]())
+            }), {})
         }}))
 
   return {
