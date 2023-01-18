@@ -9,11 +9,14 @@ html {
   touch-action: none;
   height: 100%;
   width: 100%;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--black, #000);
+  color: var(--white, #fff);
   font-family: "Roboto Slab";
   scroll-behavior: smooth;
   font-size: 1.4em;
+
+  --black: #111;
+  --white: #eee;
 }
 
 @media (min-width: 320px) {
