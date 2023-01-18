@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Head from "../lib/fe/components/Head"
 import Hero from "../lib/fe/components/Hero"
 import Projects from "../lib/fe/components/Projects"
@@ -6,17 +6,21 @@ import Skills from "../lib/fe/components/Skills"
 import Personal from "../lib/fe/components/Personal"
 import Links from "../lib/fe/components/Links"
 import useVhWatcher from "../lib/fe/hooks/useVhWatcher"
-import useNavigation from "../lib/fe/hooks/useNavigation"
+import Navigation from "../lib/fe/components/Navigation"
 import { getSectionData, getHeroLines, getProjects, getSkills, getAboutMe, getLinks } from "../lib/be/fetchers"
 
 const Index = ({ sections }) => {
   useVhWatcher()
-  const [Navigation, selectedSectionIndex] = useNavigation(sections)
+  const [selectedSectionIndex, setSelectedSectionIndex] = useState(null)
 
   return (
     <>
       <Head />
-      { Navigation }
+      <Navigation
+        sections={ sections }
+        selectedSectionIndex={ selectedSectionIndex }
+        setSelectedSectionIndex={ setSelectedSectionIndex }
+      />
       {
         sections.map((section, i) => {
           const Comp = titlesToComps[section.title]
